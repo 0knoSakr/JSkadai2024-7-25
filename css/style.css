@@ -1,0 +1,89 @@
+@charset "UTF-8";
+/*-------------------------
+  ログイン画面
+-------------------------*/
+.bg-blue{
+  background: #056ba8;
+  margin-top:200px;
+}
+
+h2 {
+  margin-bottom: 40px;
+  color: #333;
+}
+
+.center {
+  position: absolute;
+  margin: auto;
+  text-align: center;
+  width: 380px;
+  background: white;
+  padding: 45px;
+  position: relative;
+}
+
+.center::after {
+  position: absolute;
+  border: 1px solid #aaa;
+  border-radius: 6px;
+  content: "";
+  top: 12px;
+  bottom: 12px;
+  left: 12px;
+  right: 12px;
+}
+
+.logoin td:nth-of-type(odd) {
+  display: none;
+}
+
+.input-text {
+  flex-flow: column;
+  display: flex;
+  margin: auto;
+}
+
+.input-text input {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #aaa;
+  border-radius: 6px;
+  background: #eee;
+}
+
+.button {
+  width: 290px;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  background: #3bb840;
+  color: #eee;
+}
+
+/*-------------------------
+  社員情報
+-------------------------*/
+.table-style table{
+  margin: auto;
+}
+
+.table-style table th,td{
+  border-collapse: collapse;
+  border: 1px solid #333;
+}
+
+.table-style table th{
+  padding:15px;
+  background: #eee;
+}
+
+.table-style table tr td{
+  padding: 20px;
+}
+
+/*-------------------------
+  練習
+-------------------------*/
+.backColor{
+  color: red;
+}
