@@ -37,13 +37,27 @@ h2 {
   display: none;
 }
 
-.input-text {
+.spId {
   flex-flow: column;
   display: flex;
   margin: auto;
 }
 
-.input-text input {
+.spId input {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #aaa;
+  border-radius: 6px;
+  background: #eee;
+}
+
+.spPs {
+  flex-flow: column;
+  display: flex;
+  margin: auto;
+}
+
+.spPs input {
   padding: 10px;
   margin-bottom: 10px;
   border: 1px solid #aaa;
