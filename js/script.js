@@ -5,7 +5,6 @@ let button = document.getElementById("button");
 //divの情報を持ってきてる
 let spId = document.getElementById("spId");
 let spPs = document.getElementById("spPs");
-let isRight = true;
 //ボタンをクリックしたらvalueを読み込んで検証する
 button.addEventListener("click", function () {
   //textBoxの情報を持ってくる
@@ -13,24 +12,28 @@ button.addEventListener("click", function () {
   let password = document.getElementById("paswId").value;
   let error1 = document.getElementById("error1");
   let error2 = document.getElementById("error2");
+  let style1 = document.getElementById("accId");
+  let style2 = document.getElementById("paswId");
 
   //ID項目のチェック
   if (pattern.test(account)) {
     error1.innerHTML = "";
+    style1.style.borderColor = "";
   } else {
-    // let text = `<p>IDは半角英数字記号のみで記入して下さい</p>`;
     error1.innerHTML = "IDは半角英数字記号のみで記入して下さい";
-    isRight = false;
     // console.log("テスト")
+    error1.style.color = "red";
+    style1.style.borderColor = "red";
   }
   //パスワード項目のチェック
   if (pattern.test(password)) {
     error2.innerHTML = "";
+    style2.style.borderColor = "";
   } else {
-    // let text = `<p>IDは半角英数字記号のみで記入して下さい</p>`;
-    error2.innerHTML = "IDは半角英数字記号のみで記入して下さい";
-    isRight = false;
-    console.log("テスト")
+    error2.innerHTML = "パスワードは半角英数字記号のみで記入して下さい";
+    // console.log("テスト")
+    error2.style.color = "red";
+    style2.style.borderColor = "red";
   }
 
   //フォームボタンを押してもページが変わらなくなる
@@ -43,13 +46,5 @@ button.addEventListener("click", function () {
       method: "POST",
       body: formData,
     };
-
-    // fetch(action, options).then((e) => {
-    //   if (e.status === 200) {
-    //     alert("保存しました。");
-    //     return;
-    //   }
-    //   alert("保存できませんでした。");
-    // });
   };
 });
