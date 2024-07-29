@@ -22,20 +22,9 @@ h2 {
   position: relative;
 }
 
-.center::after {
-  position: absolute;
-  border: 1px solid #aaa;
-  border-radius: 6px;
-  content: "";
-  top: 12px;
-  bottom: 12px;
-  left: 12px;
-  right: 12px;
-}
-
-.logoin td:nth-of-type(odd) {
+/* .logoin td:nth-of-type(odd) {
   display: none;
-}
+} */
 
 .spId {
   flex-flow: column;
@@ -65,7 +54,7 @@ h2 {
   background: #eee;
 }
 
-.button {
+#button {
   width: 290px;
   padding: 10px;
   border: none;
@@ -73,6 +62,19 @@ h2 {
   background: #3bb840;
   color: #eee;
 }
+
+.center::after {
+  position: absolute;
+  border: 1px solid #aaa;
+  border-radius: 6px;
+  content: "";
+  top: 12px;
+  bottom: 12px;
+  left: 12px;
+  right: 12px;
+  pointer-events: none;
+}
+
 
 /*-------------------------
   社員情報
@@ -93,11 +95,4 @@ h2 {
 
 .table-style table tr td{
   padding: 20px;
-}
-
-/*-------------------------
-  練習
--------------------------*/
-.backColor{
-  color: red;
 }
