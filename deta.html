@@ -9,49 +9,51 @@
         <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
-        <div class=new-data>
-            <ul>
-                <li> 社員名</li>
+        <form action="" method="post" id="form">
+            <div class=new-data>
                 <ul>
-                    <li><input type="text" name="name1" id="name1" class="inputBox"></li>
-                    <li id="error3"></li>
+                    <li> 社員名</li>
+                    <ul>
+                        <li><input type="text" name="name1" id="name1" class="inputBox"></li>
+                        <li id="error3"></li>
+                    </ul>
+                    <li> ふりがな</li>
+                    <ul>
+                        <li><input type="text" name="name2" id="name2" class="inputBox"></li>
+                        <li id="error4"></li>
+                    </ul>
+                    <li>生年月日</li>
+                    <ul>
+                        <li><input type="date" name="birthday" id="birthday" class="inputBox"></li>
+                    </ul>
+                    <li> 年齢</li>
+                    <ul>
+                        <li><input type="text" name="age" id="age" class="inputBox"></li>
+                        <li id="error5"></li>
+                    </ul>
+                    <li> 入社日</li>
+                    <ul>
+                        <li><input type="date" name="hire-date" id="hire-date" class="inputBox"></li>
+                    </ul>
+                    <li> 住所</li>
+                    <ul>
+                        <li><input type="text" name="address" id="address" class="inputBox"></li>
+                        <li id="error6"></li>
+                    </ul>
+                    <li> 電話番号</li>
+                    <ul>
+                        <li><input type="text" name="number" id="number" class="inputBox"></li>
+                        <li id="error7"></li>
+                    </ul>
+                    <li> 所属部署</li>
+                    <ul>
+                        <li><input type="text" name="affiliation" id="affiliation" class="inputBox"></li>
+                        <li id="error8"></li>
+                    </ul>
                 </ul>
-                <li> ふりがな</li>
-                <ul>
-                    <li><input type="text" name="name2" id="name2" class="inputBox"></li>
-                    <li id="error4"></li>
-                </ul>
-                <li>生年月日</li>
-                <ul>
-                    <li><input type="date" name="birthday" id="birthday" class="inputBox"></li>
-                </ul>
-                <li> 年齢</li>
-                <ul>
-                    <li><input type="text" name="age" id="age" class="inputBox"></li>
-                    <li id="error5"></li>
-                </ul>
-                <li> 入社日</li>
-                <ul>
-                    <li><input type="date" name="hire-date" id="hire-date" class="inputBox"></li>
-                </ul>
-                <li> 住所</li>
-                <ul>
-                    <li><input type="text" name="address" id="address" class="inputBox"></li>
-                    <li id="error6"></li>
-                </ul>
-                <li> 電話番号</li>
-                <ul>
-                    <li><input type="text" name="number" id="number" class="inputBox"></li>
-                    <li id="error7"></li>
-                </ul>
-                <li> 所属部署</li>
-                <ul>
-                    <li><input type="text" name="affiliation" id="affiliation" class="inputBox"></li>
-                    <li id="error8"></li>
-                </ul>
-            </ul>
-            <input type="button" value="登録" id="button">
-        </div>
+                <input type="button" value="登録" id="button">
+            </div>
+        </form>
         <div class="table-style">
             <table>
                 <tr>

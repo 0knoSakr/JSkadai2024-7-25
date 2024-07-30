@@ -67,37 +67,36 @@ button.addEventListener("click", function () {
   let style3 = document.getElementById("name1");
   //エラー文を入れるためのliの情報
   let error3 = document.getElementById("error3");
-//ふりがなのバリュー
+  //ふりがなのバリュー
   let name2 = document.getElementById("name2").value;
-//スタイル変更
+  //スタイル変更
   let style4 = document.getElementById("name2");
-//エラー文を入れる
+  //エラー文を入れる
   let error4 = document.getElementById("error4");
-//年齢のバリュー
+  //年齢のバリュー
   let age = document.getElementById("age").value;
-//スタイル変更
+  //スタイル変更
   let style5 = document.getElementById("age");
-//エラー文を入れる
+  //エラー文を入れる
   let error5 = document.getElementById("error5");
-//住所のバリュー
+  //住所のバリュー
   let address = document.getElementById("address").value;
-//スタイル変更
+  //スタイル変更
   let style6 = document.getElementById("address");
-//エラー文を入れる
+  //エラー文を入れる
   let error6 = document.getElementById("error6");
-//電話番号のバリュー
+  //電話番号のバリュー
   let number = document.getElementById("number").value;
-//スタイル変更
+  //スタイル変更
   let style7 = document.getElementById("number");
-//エラー文を入れる
+  //エラー文を入れる
   let error7 = document.getElementById("error7");
-//所属部署のバリュー
+  //所属部署のバリュー
   let affiliation = document.getElementById("affiliation").value;
-//スタイル変更
+  //スタイル変更
   let style8 = document.getElementById("affiliation");
-//エラー文を入れる
+  //エラー文を入れる
   let error8 = document.getElementById("error8");
-
 
   //社員名
   if (pattern2.test(name1)) {
@@ -107,7 +106,7 @@ button.addEventListener("click", function () {
     error3.innerHTML = "記号、数字は不可";
     error3.style.color = "red";
     style3.style.borderColor = "red";
-    console.log("テスト")
+    console.log("テスト");
   }
 
   //ふりがな
@@ -118,18 +117,35 @@ button.addEventListener("click", function () {
     error4.innerHTML = "ひらがなのみ";
     error4.style.color = "red";
     style4.style.borderColor = "red";
-    console.log("テスト")
+    console.log("テスト");
   }
 
+  const getBirthday = document.getElementById("birthday").value;
   //生年月日
-  function getAge()
-  const today = new Date();
-  const birthday = document.getElementById("birthday").value;
-  const currentBirthday = new Date(today.getFullYear(), birthday.getMonth(), birthday.getDate());
-  let age = today.getFullYear() - birthday.getFullYear();
-  if (today < currentBirthday) {
-    age--;
+  function getAge() {
+    //生年月日のテキストボックスのバリューの情報
+    const birthdate = new Date(getBirthday);
+    //今日の日付の取得
+    const today = new Date();
+
+    let thisYearsBirthday = new Date(
+      today.getFullYear(),
+      getBirthday.month - 1,
+      getBirthday.date
+    );
+    //年齢
+    let age2 = today.getFullYear() - getBirthday.getFullYear();
+    if (
+      today.getMonth() < birthdate.getMonth() ||
+      (today.getMonth() === birthdate.getMonth() &&
+        today.getDate() < birthdate.getDate())
+    ) {
+      age--;
+    }
+    age.value = age2;
   }
+  // console.log(getAge(birthday));
+  // age.innerHTML = getAge(birthday);
 
 
   //年齢
@@ -140,7 +156,7 @@ button.addEventListener("click", function () {
     error5.innerHTML = "数字のみ";
     error5.style.color = "red";
     style5.style.borderColor = "red";
-    console.log("テスト")
+    console.log("テスト");
   }
 
   //住所
@@ -151,7 +167,7 @@ button.addEventListener("click", function () {
     error6.innerHTML = " 記号は不可";
     error6.style.color = "red";
     style6.style.borderColor = "red";
-    console.log("テスト")
+    console.log("テスト");
   }
 
   //電話番号
@@ -162,7 +178,7 @@ button.addEventListener("click", function () {
     error7.innerHTML = " 数字のみ";
     error7.style.color = "red";
     style7.style.borderColor = "red";
-    console.log("テスト")
+    console.log("テスト");
   }
 
   //所属部署
@@ -173,7 +189,6 @@ button.addEventListener("click", function () {
     error8.innerHTML = " 記号、数字は不可";
     error8.style.color = "red";
     style8.style.borderColor = "red";
-    console.log("テスト")
+    console.log("テスト");
   }
-
 });
