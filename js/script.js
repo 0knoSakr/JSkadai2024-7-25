@@ -120,33 +120,49 @@ button.addEventListener("click", function () {
     console.log("テスト");
   }
 
-  const getBirthday = document.getElementById("birthday").value;
   //生年月日
-  function getAge() {
-    //生年月日のテキストボックスのバリューの情報
-    const birthdate = new Date(getBirthday);
-    //今日の日付の取得
-    const today = new Date();
+  const birthday = document.getElementById("birthday").value;
+  console.log(birthday);
+  let toString = Object.prototype.toString;
 
-    let thisYearsBirthday = new Date(
-      today.getFullYear(),
-      getBirthday.month - 1,
-      getBirthday.date
-    );
-    //年齢
-    let age2 = today.getFullYear() - getBirthday.getFullYear();
-    if (
-      today.getMonth() < birthdate.getMonth() ||
-      (today.getMonth() === birthdate.getMonth() &&
-        today.getDate() < birthdate.getDate())
-    ) {
-      age--;
+  function calculateAge() {
+    //生年月日の値
+    let date1 = new Date(birthday);
+    //年の値
+    let selectedYear = date1.getFullYear();
+    //月の値
+    let selectedMonth = date1.getMonth();
+    //日の値
+    let selectedDay = date1.getDate();
+
+      // セレクトボックスが変更されたときに実行される関数
+  selectedYear.addEventListener("change", function () {
+    calculateAge();
+  })
+  selectedMonth.addEventListener("change", function () {
+    calculateAge();
+  })
+  selectedDay.addEventListener("change", function () {
+    calculateAge();
+  })
+
+    //現在の日付を取得
+    let today = new Date();
+    let currentYear = today.getFullYear();
+    let currentMonth = today.getMonth() + 1;
+    let currentDay = today.getDate();
+
+    // 年齢を計算
+    let age2 = currentYear - selectedYear;
+    console.log(age2);
+
+    // 誕生日がまだ来ていない場合、年齢を1つ減らす
+    if (selectedMonth > currentMonth || (selectedMonth == currentMonth && selectedDay > currentDay)) {
+      age2--;
     }
+    // 年齢を入力フィールドに自動入力
     age.value = age2;
-  }
-  // console.log(getAge(birthday));
-  // age.innerHTML = getAge(birthday);
-
+  };
 
   //年齢
   if (pattern4.test(age)) {
