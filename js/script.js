@@ -125,27 +125,31 @@ button.addEventListener("click", function () {
   console.log(birthday);
   let toString = Object.prototype.toString;
 
+  //生年月日の値
+  let date1 = new Date(birthday);
+  //年の値
+  let selectedYear = date1.getFullYear();
+  console.log(selectedYear);
+  //月の値
+  let selectedMonth = date1.getMonth();
+  console.log(selectedMonth);
+  //日の値
+  let selectedDay = date1.getDate();
+  console.log(selectedDay);
+
+  // セレクトボックスが変更されたときに実行される関数
+  birthday.addEventListener("change", function() {
+    calculateAge();
+    console.log(calculateAge());
+    });
+  // selectedMonth.addEventListener("change", function () {
+  //   calculateAge();
+  // });
+  // selectedDay.addEventListener("change", function () {
+  //   calculateAge();
+  // });
+
   function calculateAge() {
-    //生年月日の値
-    let date1 = new Date(birthday);
-    //年の値
-    let selectedYear = date1.getFullYear();
-    //月の値
-    let selectedMonth = date1.getMonth();
-    //日の値
-    let selectedDay = date1.getDate();
-
-      // セレクトボックスが変更されたときに実行される関数
-  selectedYear.addEventListener("change", function () {
-    calculateAge();
-  })
-  selectedMonth.addEventListener("change", function () {
-    calculateAge();
-  })
-  selectedDay.addEventListener("change", function () {
-    calculateAge();
-  })
-
     //現在の日付を取得
     let today = new Date();
     let currentYear = today.getFullYear();
@@ -157,7 +161,10 @@ button.addEventListener("click", function () {
     console.log(age2);
 
     // 誕生日がまだ来ていない場合、年齢を1つ減らす
-    if (selectedMonth > currentMonth || (selectedMonth == currentMonth && selectedDay > currentDay)) {
+    if (
+      selectedMonth > currentMonth ||
+      (selectedMonth == currentMonth && selectedDay > currentDay)
+    ) {
       age2--;
     }
     // 年齢を入力フィールドに自動入力
