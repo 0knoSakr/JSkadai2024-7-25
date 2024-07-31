@@ -138,16 +138,15 @@ button.addEventListener("click", function () {
   console.log(selectedDay);
 
   // セレクトボックスが変更されたときに実行される関数
-  birthday.addEventListener("change", function() {
+  selectedYear.addEventListener("change", function() {
     calculateAge();
-    console.log(calculateAge());
     });
-  // selectedMonth.addEventListener("change", function () {
-  //   calculateAge();
-  // });
-  // selectedDay.addEventListener("change", function () {
-  //   calculateAge();
-  // });
+  selectedMonth.addEventListener("change", function () {
+    calculateAge();
+  });
+  selectedDay.addEventListener("change", function () {
+    calculateAge();
+  });
 
   function calculateAge() {
     //現在の日付を取得
