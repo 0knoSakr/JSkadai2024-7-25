@@ -96,3 +96,17 @@ h2 {
 .table-style table tr td{
   padding: 20px;
 }
+
+/*-------------------------
+  新規情報追加
+-------------------------*/
+.new-data ul {
+  list-style: none;
+  margin-left: -15px;
+}
+
+.new-data {
+  background: #c4f087;
+  width: 290px;
+  margin: 0 auto;
+}
