@@ -167,9 +167,9 @@ button.addEventListener("click", function () {
 
 // セレクトボックスが変更されたときに実行される関数
 //日付が指定されたら指定したものが変数calculateAgeに入れられる
-  birthday.addEventListener("change", function() {
-    calculateAge();
-    });
+birthday.addEventListener("change", function () {
+  calculateAge();
+});
 
 function calculateAge() {
   //生年月日
@@ -186,24 +186,111 @@ function calculateAge() {
   //日の値
   let selectedDay = date1.getDate();
 
-    //現在の日付を取得
-    let today = new Date();
-    let currentYear = today.getFullYear();
-    let currentMonth = today.getMonth() + 1;
-    let currentDay = today.getDate();
+  //現在の日付を取得
+  let today = new Date();
+  let currentYear = today.getFullYear();
+  let currentMonth = today.getMonth() + 1;
+  let currentDay = today.getDate();
 
-    // 年齢を計算
-    let age2 = currentYear - selectedYear;
+  // 年齢を計算
+  let age2 = currentYear - selectedYear;
 
+  // 誕生日がまだ来ていない場合、年齢を1つ減らす
+  if (
+    selectedMonth > currentMonth ||
+    (selectedMonth == currentMonth && selectedDay > currentDay)
+  ) {
+    age2--;
+  }
+  // 年齢を入力フィールドに自動入力
+  age.value = age2;
+  console.log("テスト");
+}
 
-    // 誕生日がまだ来ていない場合、年齢を1つ減らす
-    if (
-      selectedMonth > currentMonth ||
-      (selectedMonth == currentMonth && selectedDay > currentDay)
-    ) {
-      age2--;
-    }
-    // 年齢を入力フィールドに自動入力
-    age.value = age2;
-    console.log("テスト")
-  };
+//ソート機能
+
+//検索ボタンの情報
+let button2 = document.getElementById("button2");
+
+// json情報の読み込み
+async function callApi() {
+  const res = await fetch("js/employees.json");
+  const users = await res.json();
+  return users;
+}
+//jsonの中身を入れたい場所の指定
+let jsonData = document.getElementById("jsonData");
+
+//ページを読み込んだ時に表示させる
+document.addEventListener("DOMContentLoaded", async function () {
+  //callApiの中の情報が入ってるjson
+  let json = await callApi();
+
+  //tableにjsonの情報を入れる
+  json.forEach((son) => {
+    //動作確認のコンソール
+    // console.log(son.furigana);
+    //tableのthの下に情報を入れるための記述
+    let text2 = `<tr><td></td><td>${son.employee_name}</td><td>${son.furigana}</td><td>${son.age}</td><td>${son.hire_date}</td><td>${son.address}</td><td>${son.phone_number}</td><td>${son.department}</td></tr>`;
+    //insertAdjacentHTMLでtextを入れている入れる内容の順番を指定する変数text
+    jsonData.insertAdjacentHTML("beforeend", text2);
+  });
+});
+
+//検索ボタンを押したらの指示
+button2.addEventListener("click", async function () {
+  //tableの情報
+  let table = document.getElementById("table");
+
+  //callApiの中の情報が入ってるjson
+  let json = await callApi();
+
+  //情報をリセットするための記述
+  while (jsonData.firstChild) {
+    jsonData.removeChild(jsonData.firstChild);
+  }
+
+  //selectの情報
+  let select = document.getElementById("list");
+  //selectbuttonのoptionが変わった時の動き
+  // selectの内容がchangeされたとき
+  let selectValue = select.value;
+  //selectを変えたとき動いてるかの確認
+  console.log(selectValue);
+
+  function selectSort(sort) {
+    sort.forEach((son) => {
+      //動作確認のコンソール
+      // console.log(son.furigana);
+      //tableのthの下に情報を入れるための記述
+      let text2 = `<tr><td></td><td>${son.employee_name}</td><td>${son.furigana}</td><td>${son.age}</td><td>${son.hire_date}</td><td>${son.address}</td><td>${son.phone_number}</td><td>${son.department}</td></tr>`;
+      //insertAdjacentHTMLでtextを入れている入れる内容の順番を指定する変数text
+      jsonData.insertAdjacentHTML("beforeend", text2);
+    });
+  }
+
+  //昇順の時の指定
+  if (selectValue == "ascending-order") {
+    //ひらがなのソート
+    let hiraSort = json.sort(
+      (a, b) => a.furigana.localeCompare(b.furigana),
+      "ja"
+    );
+    selectSort(hiraSort);
+  }
+
+  //降順の時の指定
+  else if (selectValue == "descending-order") {
+    //ひらがなのソート
+    let hiraSort = json.sort(
+      (a, b) => b.furigana.localeCompare(a.furigana),
+      "ja"
+    );
+    selectSort(hiraSort);
+  }
+
+  //通常
+  else if (selectValue == "usually") {
+    selectSort(json);
+  }
+}); //クリックしたら動く最後尾
