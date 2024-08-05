@@ -256,15 +256,16 @@ button2.addEventListener("click", async function () {
   // selectの内容がchangeされたとき
   let selectValue = select.value;
   //selectを変えたとき動いてるかの確認
-  console.log(selectValue);
+  // console.log(selectValue);
 
   function selectSort(sort) {
     sort.forEach((son) => {
       //動作確認のコンソール
       // console.log(son.furigana);
-      //tableのthの下に情報を入れるための記述
+      //tableのthの下に情報を入れてブラウザ上に出力する
       let text2 = `<tr><td></td><td>${son.employee_name}</td><td>${son.furigana}</td><td>${son.age}</td><td>${son.hire_date}</td><td>${son.address}</td><td>${son.phone_number}</td><td>${son.department}</td></tr>`;
-      //insertAdjacentHTMLでtextを入れている入れる内容の順番を指定する変数text
+      //insertAdjacentHTMLでtextを入れている
+      //入れる内容の順番を指定する変数text
       jsonData.insertAdjacentHTML("beforeend", text2);
     });
   }
@@ -294,3 +295,42 @@ button2.addEventListener("click", async function () {
     selectSort(json);
   }
 }); //クリックしたら動く最後尾
+
+//絞り込み機能
+//テキストボックスの情報
+let empName = document.getElementById("employee_name_search");
+//絞り込みボタンの情報
+let searchButton = document.getElementById("button3");
+
+//searchButtonが押されたら検索するスタート
+searchButton.addEventListener("click", async function searchName() {
+  //callApiの中の情報が入ってるjson
+  let json = await callApi();
+
+  //テーブルにある情報をリセットするための記述
+  while (jsonData.firstChild) {
+    jsonData.removeChild(jsonData.firstChild);
+  }
+
+  //for文カッコで囲いセミコロンで区切った三つの引数と続いてループ内で実行される文からなるループの構成
+  //変数iをループ(繰り返し)させてjsonを0~19まで表示している
+  for (let i = 0; i < json.length; i++) {
+    // console.log(json[i].employee_name);
+    //textboxのvalueの情報を取得したpattern8
+    let pattern8 = empName.value;
+    //json[i].employee_nameをpattern8と比較するための.indexOfを書く
+    //比べたい元のデータ.indexOf(比べたいもの) > -1 比較ができないと-1が返ってくる
+    if (json[i].employee_name.indexOf(pattern8) > -1) {
+      //結果を見る場合は比較する部分.indexOf(比べたいもの)を消す
+      //.employee_nameを消せば検索したものだけのデータを見ることができる
+      //確認のためのコンソール
+      // console.log(json[i]);
+      //変数serachTxtに今回のテーブルに入れるデータの文章を入れる
+      //テーブルの必要なタグとjsonのindexの繰り返し変数iのobjectの名前を付ける
+      let serachTxt = `<tr><td></td><td>${json[i].employee_name}</td><td>${json[i].furigana}</td><td>${json[i].age}</td><td>${json[i].hire_date}</td><td>${json[i].address}</td><td>${json[i].phone_number}</td><td>${json[i].department}</td></tr>`;
+      //データを入れたいテーブルの場所の変数名.insertAdjacentHTML
+      //(どこに入れるかの指定"beforeend", 入れたい文章の変数名serachTxt);
+      jsonData.insertAdjacentHTML("beforeend", serachTxt);
+    }
+  }
+}); //searchButtonをクリックしたらの最後尾
